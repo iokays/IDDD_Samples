@@ -56,9 +56,9 @@ public class HibernatePublishedNotificationTrackerStore
         Query query =
                 this.session().createQuery(
                         "from PublishedNotificationTracker as pnt "
-                        + "where pnt.typeName = ?");
+                        + "where pnt.typeName = ?1");
 
-        query.setParameter(0, aTypeName);
+        query.setParameter(1, aTypeName);
 
         PublishedNotificationTracker publishedNotificationTracker = null;
 

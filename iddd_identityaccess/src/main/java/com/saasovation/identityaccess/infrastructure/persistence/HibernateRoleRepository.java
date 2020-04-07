@@ -48,9 +48,9 @@ public class HibernateRoleRepository
     public Collection<Role> allRoles(TenantId aTenantId) {
         Query query = this.session().createQuery(
                 "from com.saasovation.identityaccess.domain.model.access.Role as _obj_ "
-                + "where _obj_.tenantId = ?");
+                + "where _obj_.tenantId = ?1");
 
-        query.setParameter(0, aTenantId);
+        query.setParameter(1, aTenantId);
 
         return (Collection<Role>) query.list();
     }
@@ -64,11 +64,11 @@ public class HibernateRoleRepository
     public Role roleNamed(TenantId aTenantId, String aRoleName) {
         Query query = this.session().createQuery(
                 "from com.saasovation.identityaccess.domain.model.access.Role as _obj_ "
-                + "where _obj_.tenantId = ? "
-                  + "and _obj_.name = ?");
+                + "where _obj_.tenantId = ?1 "
+                  + "and _obj_.name = ?2");
 
-        query.setParameter(0, aTenantId);
-        query.setParameter(1, aRoleName, StringType.INSTANCE);
+        query.setParameter(1, aTenantId);
+        query.setParameter(2, aRoleName, StringType.INSTANCE);
 
         return (Role) query.uniqueResult();
     }

@@ -57,9 +57,9 @@ public class HibernateTenantRepository
     public Tenant tenantNamed(String aName) {
         Query query = this.session().createQuery(
                 "from com.saasovation.identityaccess.domain.model.identity.Tenant as _obj_ "
-                + "where _obj_.name = ?");
+                + "where _obj_.name = ?1");
 
-        query.setParameter(0, aName, StringType.INSTANCE);
+        query.setParameter(1, aName, StringType.INSTANCE);
 
         return (Tenant) query.uniqueResult();
     }
@@ -68,9 +68,9 @@ public class HibernateTenantRepository
     public Tenant tenantOfId(TenantId aTenantId) {
         Query query = this.session().createQuery(
                 "from com.saasovation.identityaccess.domain.model.identity.Tenant as _obj_ "
-                + "where _obj_.tenantId = ?");
+                + "where _obj_.tenantId = ?1");
 
-        query.setParameter(0, aTenantId);
+        query.setParameter(1, aTenantId);
 
         return (Tenant) query.uniqueResult();
     }

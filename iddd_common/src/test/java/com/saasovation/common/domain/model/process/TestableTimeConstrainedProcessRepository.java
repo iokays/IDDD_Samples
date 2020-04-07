@@ -39,9 +39,9 @@ public class TestableTimeConstrainedProcessRepository
     public TestableTimeConstrainedProcess processOfId(ProcessId aProcessId) {
         Query query =
                 this.session().createQuery(
-                    "from TestableTimeConstrainedProcess as ttcp where ttcp.processId = ?");
+                    "from TestableTimeConstrainedProcess as ttcp where ttcp.processId = ?1");
 
-        query.setParameter(0, aProcessId);
+        query.setParameter(1, aProcessId);
 
         return (TestableTimeConstrainedProcess) query.uniqueResult();
     }

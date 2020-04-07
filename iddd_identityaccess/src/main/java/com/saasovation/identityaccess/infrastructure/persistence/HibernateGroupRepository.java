@@ -47,10 +47,10 @@ public class HibernateGroupRepository
     public Collection<Group> allGroups(TenantId aTenantId) {
         Query query = this.session().createQuery(
                 "from com.saasovation.identityaccess.domain.model.identity.Group as _obj_ "
-                + "where _obj_.tenantId = ? "
+                + "where _obj_.tenantId = ?1 "
                   + "and _obj_.name not like '" + Group.ROLE_GROUP_PREFIX + "%'");
 
-        query.setParameter(0, aTenantId);
+        query.setParameter(1, aTenantId);
 
         return (Collection<Group>) query.list();
     }
@@ -63,11 +63,11 @@ public class HibernateGroupRepository
 
         Query query = this.session().createQuery(
                 "from com.saasovation.identityaccess.domain.model.identity.Group as _obj_ "
-                + "where _obj_.tenantId = ? "
-                  + "and _obj_.name = ?");
+                + "where _obj_.tenantId = ?1 "
+                  + "and _obj_.name = ?2");
 
-        query.setParameter(0, aTenantId);
-        query.setParameter(1, aName, StringType.INSTANCE);
+        query.setParameter(1, aTenantId);
+        query.setParameter(2, aName, StringType.INSTANCE);
 
         return (Group) query.uniqueResult();
     }

@@ -56,13 +56,13 @@ public class HibernateUserRepository
 
         Query query = this.session().createQuery(
                 "from com.saasovation.identityaccess.domain.model.identity.User as _obj_ "
-                + "where _obj_.tenantId = ? "
-                +   "and _obj_.person.name.firstName like ? "
-                +   "and _obj_.person.name.lastName like ?");
+                + "where _obj_.tenantId = ?1 "
+                +   "and _obj_.person.name.firstName like ?2 "
+                +   "and _obj_.person.name.lastName like ?3");
 
-        query.setParameter(0, aTenantId);
-        query.setParameter(1, aFirstNamePrefix + "%", StringType.INSTANCE);
-        query.setParameter(2, aLastNamePrefix + "%", StringType.INSTANCE);
+        query.setParameter(1, aTenantId);
+        query.setParameter(2, aFirstNamePrefix + "%", StringType.INSTANCE);
+        query.setParameter(3, aLastNamePrefix + "%", StringType.INSTANCE);
 
         return query.list();
     }
@@ -80,13 +80,13 @@ public class HibernateUserRepository
 
         Query query = this.session().createQuery(
                 "from com.saasovation.identityaccess.domain.model.identity.User as _obj_ "
-                + "where _obj_.tenantId = ? "
-                  + "and _obj_.username = ? "
-                  + "and _obj_.password = ?");
+                + "where _obj_.tenantId = ?1 "
+                  + "and _obj_.username = ?2 "
+                  + "and _obj_.password = ?3");
 
-        query.setParameter(0, aTenantId);
-        query.setParameter(1, aUsername, StringType.INSTANCE);
-        query.setParameter(2, anEncryptedPassword, StringType.INSTANCE);
+        query.setParameter(1, aTenantId);
+        query.setParameter(2, aUsername, StringType.INSTANCE);
+        query.setParameter(3, anEncryptedPassword, StringType.INSTANCE);
 
         return (User) query.uniqueResult();
     }
@@ -98,11 +98,11 @@ public class HibernateUserRepository
 
         Query query = this.session().createQuery(
                 "from com.saasovation.identityaccess.domain.model.identity.User as _obj_ "
-                + "where _obj_.tenantId = ? "
-                  + "and _obj_.username = ?");
+                + "where _obj_.tenantId = ?1 "
+                  + "and _obj_.username = ?2");
 
-        query.setParameter(0, aTenantId);
-        query.setParameter(1, aUsername, StringType.INSTANCE);
+        query.setParameter(1, aTenantId);
+        query.setParameter(2, aUsername, StringType.INSTANCE);
 
         return (User) query.uniqueResult();
     }
