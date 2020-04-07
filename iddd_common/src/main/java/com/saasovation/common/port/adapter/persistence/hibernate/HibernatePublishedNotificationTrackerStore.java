@@ -16,7 +16,7 @@ package com.saasovation.common.port.adapter.persistence.hibernate;
 
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 
 import com.saasovation.common.notification.Notification;
 import com.saasovation.common.notification.PublishedNotificationTracker;

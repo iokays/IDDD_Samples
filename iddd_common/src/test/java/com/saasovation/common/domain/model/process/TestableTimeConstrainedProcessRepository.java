@@ -16,10 +16,11 @@ package com.saasovation.common.domain.model.process;
 
 import javax.persistence.PersistenceException;
 
-import org.hibernate.Query;
+
 import org.hibernate.Session;
 
 import com.saasovation.common.port.adapter.persistence.hibernate.AbstractHibernateSession;
+import org.hibernate.query.Query;
 
 public class TestableTimeConstrainedProcessRepository
     extends AbstractHibernateSession {

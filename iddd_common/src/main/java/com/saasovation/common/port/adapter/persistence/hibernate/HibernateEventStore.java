@@ -16,7 +16,7 @@ package com.saasovation.common.port.adapter.persistence.hibernate;
 
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 
 import com.saasovation.common.domain.model.DomainEvent;
 import com.saasovation.common.event.EventSerializer;

@@ -16,7 +16,7 @@ package com.saasovation.identityaccess.infrastructure.persistence;
 
 import java.util.Collection;
 
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 import org.hibernate.exception.ConstraintViolationException;
 
 import com.saasovation.common.port.adapter.persistence.hibernate.AbstractHibernateSession;

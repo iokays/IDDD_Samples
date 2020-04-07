@@ -18,7 +18,7 @@ package com.saasovation.common.port.adapter.persistence.hibernate;
 import java.util.Collection;
 import java.util.Date;
 
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 import org.hibernate.exception.ConstraintViolationException;
 
 import com.saasovation.common.domain.model.process.ProcessId;
