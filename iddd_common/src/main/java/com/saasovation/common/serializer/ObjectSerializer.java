@@ -18,6 +18,9 @@ import java.lang.reflect.Type;
 
 public class ObjectSerializer extends AbstractSerializer {
 
+
+
+
     private static ObjectSerializer eventSerializer;
 
     public static synchronized ObjectSerializer instance() {

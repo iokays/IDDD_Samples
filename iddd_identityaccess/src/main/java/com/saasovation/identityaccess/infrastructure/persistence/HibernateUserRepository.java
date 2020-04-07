@@ -24,6 +24,7 @@ import com.saasovation.common.port.adapter.persistence.hibernate.AbstractHiberna
 import com.saasovation.identityaccess.domain.model.identity.TenantId;
 import com.saasovation.identityaccess.domain.model.identity.User;
 import com.saasovation.identityaccess.domain.model.identity.UserRepository;
+import org.hibernate.type.StringType;
 
 public class HibernateUserRepository
         extends AbstractHibernateSession
@@ -60,8 +61,8 @@ public class HibernateUserRepository
                 +   "and _obj_.person.name.lastName like ?");
 
         query.setParameter(0, aTenantId);
-        query.setParameter(1, aFirstNamePrefix + "%", Hibernate.STRING);
-        query.setParameter(2, aLastNamePrefix + "%", Hibernate.STRING);
+        query.setParameter(1, aFirstNamePrefix + "%", StringType.INSTANCE);
+        query.setParameter(2, aLastNamePrefix + "%", StringType.INSTANCE);
 
         return query.list();
     }
@@ -84,8 +85,8 @@ public class HibernateUserRepository
                   + "and _obj_.password = ?");
 
         query.setParameter(0, aTenantId);
-        query.setParameter(1, aUsername, Hibernate.STRING);
-        query.setParameter(2, anEncryptedPassword, Hibernate.STRING);
+        query.setParameter(1, aUsername, StringType.INSTANCE);
+        query.setParameter(2, anEncryptedPassword, StringType.INSTANCE);
 
         return (User) query.uniqueResult();
     }
@@ -101,7 +102,7 @@ public class HibernateUserRepository
                   + "and _obj_.username = ?");
 
         query.setParameter(0, aTenantId);
-        query.setParameter(1, aUsername, Hibernate.STRING);
+        query.setParameter(1, aUsername, StringType.INSTANCE);
 
         return (User) query.uniqueResult();
     }

@@ -21,6 +21,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 import org.hibernate.HibernateException;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.UserType;
 
 public class EnumUserType<E extends Enum<E>> implements UserType {
@@ -33,66 +34,69 @@ public class EnumUserType<E extends Enum<E>> implements UserType {
         this.clazz = c;
     }
 
-    public int[] sqlTypes() {
+    @Override public int[] sqlTypes() {
         return SQL_TYPES;
     }
 
-    public Class<?> returnedClass() {
+    @Override public Class<?> returnedClass() {
         return clazz;
     }
 
-    public Object nullSafeGet(
-            ResultSet resultSet,
-            String[] names,
-            Object owner)
-    throws HibernateException, SQLException {
-        String name = resultSet.getString(names[0]);
+
+
+    @Override
+    public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner)
+        throws HibernateException, SQLException {
+        String name = rs.getString(names[0]);
         E result = null;
-        if (!resultSet.wasNull()) {
+        if (!rs.wasNull()) {
             result = Enum.valueOf(clazz, name);
         }
         return result;
     }
 
-    public void nullSafeSet(
-            PreparedStatement preparedStatement,
-            Object value,
-            int index)
-    throws HibernateException, SQLException {
+    @Override
+    public void nullSafeSet(PreparedStatement st, Object value, int index, SharedSessionContractImplementor session)
+        throws HibernateException, SQLException {
         if (null == value) {
-            preparedStatement.setNull(index, Types.VARCHAR);
+            st.setNull(index, Types.VARCHAR);
         } else {
-            preparedStatement.setString(index, ((Enum<?>)value).name());
+            st.setString(index, ((Enum<?>)value).name());
         }
     }
 
-    public Object deepCopy(Object value) throws HibernateException{
+    @Override public Object deepCopy(Object value) throws HibernateException{
         return value;
     }
 
-    public boolean isMutable() {
+    @Override public boolean isMutable() {
         return false;
     }
 
-    public Object assemble(Serializable cached, Object owner) throws HibernateException {
+    @Override public Object assemble(Serializable cached, Object owner) throws HibernateException {
          return cached;
     }
 
-    public Serializable disassemble(Object value) throws HibernateException {
+    @Override public Serializable disassemble(Object value) throws HibernateException {
         return (Serializable)value;
     }
 
-    public Object replace(Object original, Object target, Object owner) throws HibernateException {
+    @Override public Object replace(Object original, Object target, Object owner) throws HibernateException {
         return original;
     }
-    public int hashCode(Object x) throws HibernateException {
+    @Override public int hashCode(Object x) throws HibernateException {
         return x.hashCode();
     }
-    public boolean equals(Object x, Object y) throws HibernateException {
-        if (x == y)
+
+
+
+    @Override public boolean equals(Object x, Object y) throws HibernateException {
+        if (x == y) {
             return true;
-        if (null == x || null == y)
+        }
+        if (null == x || null == y) {
             return false;
+        }
         return x.equals(y);
     }
 }

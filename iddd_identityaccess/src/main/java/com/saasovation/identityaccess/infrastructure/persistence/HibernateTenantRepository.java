@@ -24,6 +24,7 @@ import com.saasovation.common.port.adapter.persistence.hibernate.AbstractHiberna
 import com.saasovation.identityaccess.domain.model.identity.Tenant;
 import com.saasovation.identityaccess.domain.model.identity.TenantId;
 import com.saasovation.identityaccess.domain.model.identity.TenantRepository;
+import org.hibernate.type.StringType;
 
 public class HibernateTenantRepository
         extends AbstractHibernateSession
@@ -58,7 +59,7 @@ public class HibernateTenantRepository
                 "from com.saasovation.identityaccess.domain.model.identity.Tenant as _obj_ "
                 + "where _obj_.name = ?");
 
-        query.setParameter(0, aName, Hibernate.STRING);
+        query.setParameter(0, aName, StringType.INSTANCE);
 
         return (Tenant) query.uniqueResult();
     }

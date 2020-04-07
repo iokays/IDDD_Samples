@@ -18,8 +18,7 @@ import java.sql.Connection;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.connection.ConnectionProvider;
-import org.hibernate.engine.SessionFactoryImplementor;
+import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
 
 public class SpringHibernateSessionProvider {
 
@@ -35,13 +34,8 @@ public class SpringHibernateSessionProvider {
         Connection connection = null;
 
         try {
-            SessionFactoryImplementor sfi =
-                   (SessionFactoryImplementor) this.sessionFactory;
-
-            ConnectionProvider connectionProvider = sfi.getConnectionProvider();
-
-            connection = connectionProvider.getConnection();
-
+            connection = this.sessionFactory.getSessionFactoryOptions().getServiceRegistry().
+                getService(ConnectionProvider.class).getConnection();
         } catch (Exception e) {
             throw new IllegalStateException(
                     "Cannot get connection from session factory because: "

@@ -24,6 +24,7 @@ import com.saasovation.common.port.adapter.persistence.hibernate.AbstractHiberna
 import com.saasovation.identityaccess.domain.model.access.Role;
 import com.saasovation.identityaccess.domain.model.access.RoleRepository;
 import com.saasovation.identityaccess.domain.model.identity.TenantId;
+import org.hibernate.type.StringType;
 
 public class HibernateRoleRepository
         extends AbstractHibernateSession
@@ -67,7 +68,7 @@ public class HibernateRoleRepository
                   + "and _obj_.name = ?");
 
         query.setParameter(0, aTenantId);
-        query.setParameter(1, aRoleName, Hibernate.STRING);
+        query.setParameter(1, aRoleName, StringType.INSTANCE);
 
         return (Role) query.uniqueResult();
     }
