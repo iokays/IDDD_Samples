@@ -48,7 +48,7 @@
 
 	<bean id="eventStoreDataSource" destroy-method="close" 	class="org.apache.commons.dbcp.BasicDataSource">
 	    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-	    <property name="url" value="jdbc:mysql://10.0.9.111:3306/iddd_common" />
+	    <property name="url" value="jdbc:mysql://10.0.9.111:3306/iddd_common_test" />
 	    <property name="username" value="mrjboss" />
 	    <property name="password" value="mrjboss" />
 	    <property name="initialSize" value="3" />

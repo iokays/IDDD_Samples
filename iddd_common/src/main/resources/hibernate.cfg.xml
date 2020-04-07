@@ -6,7 +6,7 @@
         <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.password">mrjboss</property>
-        <property name="hibernate.connection.url">jdbc:mysql://10.0.9.111:3306/iddd_common</property>
+        <property name="hibernate.connection.url">jdbc:mysql://10.0.9.111:3306/iddd_common_test</property>
         <property name="hibernate.connection.username">mrjboss</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL57Dialect</property>
 
